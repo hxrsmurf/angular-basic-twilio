@@ -1,217 +1,219 @@
-<form [formGroup]="formAPISetup">
-    <div class="mb-3">
-        API User
-        <input type="text" class="form-control" formControlName="apiUser">
-    </div>
-
-    <div class="mb-3">
-        API Key
-        <input type="text" class="form-control" formControlName="apiKey">
-    </div>
-
-    <div class="mb-3">
-        Receipient
-        <input type="text" class="form-control" formControlName="receipient">
-    </div>
-
-    <div class="mb-3">
-        Chatter
-        <input type="text" class="form-control" formControlName="chatter">
-    </div>
-
-    <div class="mb-3">
-        Conversation Name
-        <input type="text" class="form-control" formControlName="conversationName">
-    </div>
-
-    <div class="mb-3">
-        Conversation SID
-        <input type="text" class="form-control" formControlName="textConversationSID">
-    </div>
-
-    <div class="mb-3">
-        Message
-        <input type="text" class="form-control" formControlName="body">
-    </div>
-
-    <div class="mb-3">
-        <!-- Button Row -->
-        <div class="row">
-            <div class="col">
-                <div class="row">
-                    <div class="col-3">
-                        <button type="submit" class="btn btn-primary" (click)="createConversation()">Create
-                            Conversation</button>
+<div class="container">
+    <form [formGroup]="formAPISetup">
+        <div class="mb-3">
+            API User
+            <input type="text" class="form-control" formControlName="apiUser">
+        </div>
+    
+        <div class="mb-3">
+            API Key
+            <input type="text" class="form-control" formControlName="apiKey">
+        </div>
+    
+        <div class="mb-3">
+            Receipient
+            <input type="text" class="form-control" formControlName="receipient">
+        </div>
+    
+        <div class="mb-3">
+            Chatter
+            <input type="text" class="form-control" formControlName="chatter">
+        </div>
+    
+        <div class="mb-3">
+            Conversation Name
+            <input type="text" class="form-control" formControlName="conversationName">
+        </div>
+    
+        <div class="mb-3">
+            Conversation SID
+            <input type="text" class="form-control" formControlName="textConversationSID">
+        </div>
+    
+        <div class="mb-3">
+            Message
+            <input type="text" class="form-control" formControlName="body">
+        </div>
+    
+        <div class="mb-3">
+            <!-- Button Row -->
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-3">
+                            <button type="submit" class="btn btn-primary" (click)="createConversation()">Create
+                                Conversation</button>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary" (click)="addProxyGroupChat()">Add Proxy</button>
+                        </div>
+                        
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary" (click)="addChatParticipant()">Add Chatter</button>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary" (click)="addToConversation()">Add SMS to Conversation</button>
+                        </div>
                     </div>
-                    <div class="col-2">
-                        <button type="submit" class="btn btn-primary" (click)="addProxyGroupChat()">Add Proxy</button>
+                </div>
+            </div>
+    
+            <!-- Button Row -->
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-success" (click)="createConversationChat()">Chat!</button>
+                        </div>
                     </div>
-                    
-                    <div class="col-2">
-                        <button type="submit" class="btn btn-primary" (click)="addChatParticipant()">Add Chatter</button>
+                </div>
+            </div>
+    
+            <!-- Button Row -->
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-secondary" (click)="getAllConversations()">Get
+                                Conversations</button>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-secondary" (click)="getMessages()">Get Get
+                                Messages</button>
+                        </div>
                     </div>
-                    <div class="col">
-                        <button type="submit" class="btn btn-primary" (click)="addToConversation()">Add SMS to Conversation</button>
+                </div>
+            </div>
+    
+            <!-- Button Row -->
+            <div class="row mt-3">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-danger" (click)="deleteConversation()">Delete
+                                Conversation</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Button Row -->
-        <div class="row mt-3">
-            <div class="col">
-                <div class="row">
-                    <div class="col">
-                        <button type="submit" class="btn btn-success" (click)="createConversationChat()">Chat!</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Button Row -->
-        <div class="row mt-3">
-            <div class="col">
-                <div class="row">
-                    <div class="col-2">
-                        <button type="submit" class="btn btn-secondary" (click)="getAllConversations()">Get
-                            Conversations</button>
-                    </div>
-                    <div class="col">
-                        <button type="submit" class="btn btn-secondary" (click)="getMessages()">Get Get
-                            Messages</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Button Row -->
-        <div class="row mt-3">
-            <div class="col">
-                <div class="row">
-                    <div class="col">
-                        <button type="submit" class="btn btn-danger" (click)="deleteConversation()">Delete
-                            Conversation</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </form>
+    
+    {{ newConversationInfo | json }}
+    
+    {{addToConversationInfo | json }}
+    
+    {{ deleteConversationInfo | json }}
+    
+    <div *ngFor="let items of textGetMessages; let i = index">
+        <!-- CH5d395e9c73bf4101977e3d1a6953a3be -->
+        <table class="table table-striped table-sm">
+            <thead>
+                <th>
+                    Date Created
+                </th>
+                <th>
+                    Author
+                </th>
+                <th>
+                    Body
+                </th>
+                <th>
+                    Media
+                </th>
+            </thead>
+    
+            <tr>
+                <td>
+                    {{textGetMessages[i].date_created}}
+                </td>
+                <td>
+                    {{textGetMessages[i].author}}
+                </td>
+                <td>
+    
+                    {{textGetMessages[i].body}}
+                </td>
+                <td>
+                    {{textGetMessages[i].media}}
+                </td>
+            </tr>
+        </table>
+    
+    
+    
+        <!-- {{textGetMessages[i].author}}
+        {{textGetMessages[i].body}} -->
     </div>
-</form>
-
-{{ newConversationInfo | json }}
-
-{{addToConversationInfo | json }}
-
-{{ deleteConversationInfo | json }}
-
-<div *ngFor="let items of textGetMessages; let i = index">
-    <!-- CH5d395e9c73bf4101977e3d1a6953a3be -->
-    <table class="table table-striped table-sm">
-        <thead>
-            <th>
-                Date Created
-            </th>
-            <th>
-                Author
-            </th>
-            <th>
-                Body
-            </th>
-            <th>
-                Media
-            </th>
-        </thead>
-
-        <tr>
-            <td>
-                {{textGetMessages[i].date_created}}
-            </td>
-            <td>
-                {{textGetMessages[i].author}}
-            </td>
-            <td>
-
-                {{textGetMessages[i].body}}
-            </td>
-            <td>
-                {{textGetMessages[i].media}}
-            </td>
-        </tr>
-    </table>
-
-
-
-    <!-- {{textGetMessages[i].author}}
-    {{textGetMessages[i].body}} -->
-</div>
-
-<div *ngFor="let items of textGetAllConversations; let i = index" class="table-responsive">
-    <table class="table table-striped table-sm">
-        <thead>
-            <th>
-                Friendly Name
-            </th>
-
-            <th>Date Created</th>
-
-            <th>
-                URL
-            </th>
-
-            <th>
-                messaging_service_sid
-            </th>
-
-            <th>
-                sid
-            </th>
-
-            <th>
-                chat_service_sid
-            </th>
-
-            <th>
-                Participants
-            </th>
-
-            <th>
-                Messaging
-            </th>
-        </thead>
-
-        <tr>
-            <td>
-                {{textGetAllConversations[i].friendly_name}}
-
-            </td>
-
-            <td>
-                {{textGetAllConversations[i].date_created}}
-            </td>
-
-            <td>
-                {{textGetAllConversations[i].url}}
-            </td>
-
-            <td>
-                {{textGetAllConversations[i].messaging_service_sid}}
-            </td>
-
-            <td>
-                {{textGetAllConversations[i].sid}}
-            </td>
-
-            <td>
-                {{textGetAllConversations[i].chat_service_sid}}
-            </td>
-
-            <td>
-                {{textGetAllConversations[i].links.participants}}
-            </td>
-
-            <td>
-                {{textGetAllConversations[i].links.messages}}
-            </td>
-        </tr>
-    </table>
+    
+    <div *ngFor="let items of textGetAllConversations; let i = index" class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+                <th>
+                    Friendly Name
+                </th>
+    
+                <th>Date Created</th>
+    
+                <th>
+                    URL
+                </th>
+    
+                <th>
+                    messaging_service_sid
+                </th>
+    
+                <th>
+                    sid
+                </th>
+    
+                <th>
+                    chat_service_sid
+                </th>
+    
+                <th>
+                    Participants
+                </th>
+    
+                <th>
+                    Messaging
+                </th>
+            </thead>
+    
+            <tr>
+                <td>
+                    {{textGetAllConversations[i].friendly_name}}
+    
+                </td>
+    
+                <td>
+                    {{textGetAllConversations[i].date_created}}
+                </td>
+    
+                <td>
+                    {{textGetAllConversations[i].url}}
+                </td>
+    
+                <td>
+                    {{textGetAllConversations[i].messaging_service_sid}}
+                </td>
+    
+                <td>
+                    {{textGetAllConversations[i].sid}}
+                </td>
+    
+                <td>
+                    {{textGetAllConversations[i].chat_service_sid}}
+                </td>
+    
+                <td>
+                    {{textGetAllConversations[i].links.participants}}
+                </td>
+    
+                <td>
+                    {{textGetAllConversations[i].links.messages}}
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>

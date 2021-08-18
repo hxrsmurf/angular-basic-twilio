@@ -10,7 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FormCreateSmsComponent } from './components/form-create-sms/form-create-sms.component';
 import { HeadersService } from './services/headers.service';
-
+import { ChatComponent } from './components/chat/chat.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { HeadersService } from './services/headers.service';
     AppComponent,
     NavbarComponent,
     FormCreateConversationComponent,
-    FormCreateSmsComponent
+    FormCreateSmsComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
