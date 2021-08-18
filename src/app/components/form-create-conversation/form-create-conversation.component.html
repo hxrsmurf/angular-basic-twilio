@@ -30,49 +30,62 @@
     </div>
 
     <div class="mb-3">
+        <!-- Button Row -->
         <div class="row">
-            <div class="col-2">
+            <div class="col">
                 <div class="row">
-                    <button type="submit" class="btn btn-primary" (click)="createConversation()">Create
-                        Conversation</button>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-primary" (click)="createConversation()">Create
+                            Conversation</button>
+                    </div>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-primary" (click)="addProxyGroupChat()">Add Proxy</button>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary" (click)="addToConversation()">Add to
+                            Conversation</button>
+                    </div>
                 </div>
             </div>
-
-            <div class="col-2">
-                <div class="row">
-                    <button type="submit" class="btn btn-danger" (click)="deleteConversation()">Delete
-                        Conversation</button>
-                </div>
-            </div>
-
-            <div class="col-2">
-                <div class="row">
-                    <button type="submit" class="btn btn-primary" (click)="addToConversation()">Add to
-                        Conversation</button>
-                </div>
-            </div>
-
-            <div class="col-2">
-                <div class="row">
-                    <button type="submit" class="btn btn-primary" (click)="addProxyGroupChat()">Add Proxy</button>
-                </div>
-            </div>
-
-            <div class="col-2">
-                <div class="row">
-                    <button type="submit" class="btn btn-success" (click)="createConversationChat()">Chat!</button>
-                </div>
-            </div>
-
-            <div class="col-2">
-                <div class="row">
-                    <button type="submit" class="btn btn-secondary" (click)="getAllConversations()">Get
-                        Conversations</button>
-                </div>
-            </div>
-
         </div>
 
+        <!-- Button Row -->
+        <div class="row mt-3">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-success" (click)="createConversationChat()">Chat!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Button Row -->
+        <div class="row mt-3">
+            <div class="col">
+                <div class="row">
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-secondary" (click)="getAllConversations()">Get
+                            Conversations</button>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-secondary" (click)="getMessages()">Get Get
+                            Messages</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Button Row -->
+        <div class="row mt-3">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-danger" (click)="deleteConversation()">Delete Conversation</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </form>
 
