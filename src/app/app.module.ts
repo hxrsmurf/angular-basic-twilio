@@ -8,6 +8,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormCreateConversationComponent } from './components/form-create-conversation/form-create-conversation.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FormCreateSmsComponent } from './components/form-create-sms/form-create-sms.component';
 
 
 
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     NavbarComponent,
-    FormCreateConversationComponent
+    FormCreateConversationComponent,
+    FormCreateSmsComponent
   ],
   imports: [
     BrowserModule,
