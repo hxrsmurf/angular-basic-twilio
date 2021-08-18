@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators'
+import { HeadersService } from 'src/app/services/headers.service';
 
 @Component({
   selector: 'app-form-create-conversation',
@@ -21,6 +22,8 @@ export class FormCreateConversationComponent implements OnInit {
   addChatInfo = ''
   textGetAllConversations: any
   Object = Object;
+  textGetMessages: any
+  chatter = ''
 
   formAPISetup = this.fb.group({
     apiURL: [this.envAPIKey.apiURL],
@@ -29,12 +32,14 @@ export class FormCreateConversationComponent implements OnInit {
     receipient: [''],
     body: [''],
     conversationName: ['My Conversation'],
-    textConversationSID: ['']
+    textConversationSID: [''],
+    chatter: ['']
   })
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private getHeaders: HeadersService
     ) { }
 
   ngOnInit(): void {
@@ -70,12 +75,7 @@ export class FormCreateConversationComponent implements OnInit {
   }
 
   createConversation(){
-    //Headers
-    const base64API = btoa(this.formAPISetup.value.apiUser + ':' + this.formAPISetup.value.apiKey)
-    const headers = {
-      'Content-Type': 'application/x-www-form-urlencoded', 
-      'Authorization': 'Basic ' +  base64API 
-    }
+    const headers = this.getHeaders.setHeaders().headers
 
     let body = new URLSearchParams({
       'MessagingServiceSid' : this.envAPIKey.messageServiceSID,
@@ -89,12 +89,7 @@ export class FormCreateConversationComponent implements OnInit {
   }
 
   addToConversation(){
-    // Headers
-    const base64API = btoa(this.formAPISetup.value.apiUser + ':' + this.formAPISetup.value.apiKey)
-    const headers = {
-      'Content-Type': 'application/x-www-form-urlencoded', 
-      'Authorization': 'Basic ' +  base64API 
-    }
+    const headers = this.getHeaders.setHeaders().headers
 
     let body = new URLSearchParams({
       'MessagingBinding.Address' : '+1' + this.formAPISetup.value.receipient
@@ -108,12 +103,7 @@ export class FormCreateConversationComponent implements OnInit {
   }  
 
   addProxyGroupChat(){
-    // Headers
-    const base64API = btoa(this.formAPISetup.value.apiUser + ':' + this.formAPISetup.value.apiKey)
-    const headers = {
-      'Content-Type': 'application/x-www-form-urlencoded', 
-      'Authorization': 'Basic ' +  base64API 
-    }
+    const headers = this.getHeaders.setHeaders().headers
 
     let body = new URLSearchParams({
       'Identity': 'Twilio',
@@ -127,13 +117,24 @@ export class FormCreateConversationComponent implements OnInit {
     })
   }
 
+  addChatParticipant(){
+    const headers = this.getHeaders.setHeaders().headers
+
+    let body = new URLSearchParams({
+      'Identity': this.formAPISetup.value.chatter,
+      'MessagingBinding.ProjectedAddress' : ''
+    })
+
+    const conversationURL = this.envAPIKey.conversationAPIURL + this.formAPISetup.value.textConversationSID + '/Participants'
+
+    this.http.post(conversationURL, body, { headers }).subscribe((res:any) => {
+      this.addToConversationInfo = res
+    })
+
+  }
+
   deleteConversation(){
-    // Headers
-    const base64API = btoa(this.formAPISetup.value.apiUser + ':' + this.formAPISetup.value.apiKey)
-    const headers = {
-      'Content-Type': 'application/x-www-form-urlencoded', 
-      'Authorization': 'Basic ' +  base64API 
-    }
+    const headers = this.getHeaders.setHeaders().headers
     
     const conversationURL = this.envAPIKey.conversationAPIURL + this.formAPISetup.value.textConversationSID
 
@@ -143,12 +144,7 @@ export class FormCreateConversationComponent implements OnInit {
   }
 
   createConversationChat(){
-    // Headers
-    const base64API = btoa(this.formAPISetup.value.apiUser + ':' + this.formAPISetup.value.apiKey)
-    const headers = {
-      'Content-Type': 'application/x-www-form-urlencoded', 
-      'Authorization': 'Basic ' +  base64API 
-    }
+    const headers = this.getHeaders.setHeaders().headers
 
     //CHf6a773d28cbf4bfb8a1189cee9b5fcd2
     const conversationURL = this.envAPIKey.conversationAPIURL + this.formAPISetup.value.textConversationSID + '/Messages'
@@ -161,12 +157,7 @@ export class FormCreateConversationComponent implements OnInit {
   }
 
   getAllConversations(){
-    // Headers
-    const base64API = btoa(this.formAPISetup.value.apiUser + ':' + this.formAPISetup.value.apiKey)
-    const headers = {
-      'Content-Type': 'application/x-www-form-urlencoded', 
-      'Authorization': 'Basic ' +  base64API 
-    }
+    const headers = this.getHeaders.setHeaders().headers
 
     console.log('Getting messages')
 
@@ -174,9 +165,16 @@ export class FormCreateConversationComponent implements OnInit {
       this.textGetAllConversations = res.conversations
     })
   }
+  
+  getMessages(){
+    const headers = this.getHeaders.setHeaders().headers
+    console.log(this.formAPISetup.value.textConversationSID)
 
-  getKeys(obj: {}){
-    return Object.keys(obj)
+    const messagesURL = this.envAPIKey.conversationAPIURL + this.formAPISetup.value.textConversationSID + '/Messages'
+
+    this.http.get(messagesURL, { headers }).subscribe((res:any) => {
+      this.textGetMessages = res.messages
+    })    
   }
 
 }

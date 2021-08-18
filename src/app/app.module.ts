@@ -9,6 +9,7 @@ import { FormCreateConversationComponent } from './components/form-create-conver
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FormCreateSmsComponent } from './components/form-create-sms/form-create-sms.component';
+import { HeadersService } from './services/headers.service';
 
 
 
@@ -26,7 +27,7 @@ import { FormCreateSmsComponent } from './components/form-create-sms/form-create
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [HeadersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
