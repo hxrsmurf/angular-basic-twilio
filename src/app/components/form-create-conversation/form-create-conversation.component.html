@@ -1,0 +1,30 @@
+<form [formGroup]="formAPISetup" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        API User
+        <input type="text" class="form-control" formControlName="apiUser">
+    </div>
+
+    <div class="mb-3">
+        API Key
+        <input type="text" class="form-control" formControlName="apiKey">
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+
+<div>
+    Result:
+    {{formAPISetup.value | json }}
+</div>
+
+<div>
+    API User:
+    {{formAPISetup.value.apiUser}}
+</div>
+
+<div>
+    API Key:
+    {{formAPISetup.value.apiKey}}
+</div>
