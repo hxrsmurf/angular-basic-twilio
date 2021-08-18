@@ -23,6 +23,7 @@
     "bootstrap": "^4.5.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
+    "twilio-chat": "^5.0.2",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
