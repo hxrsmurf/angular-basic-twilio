@@ -1,0 +1,37 @@
+<div class="container mt-3">
+    Chat History for:
+</div>
+
+<div class="container mt-3">
+    <div #scrollme class="card overflow-auto" style="height: 700px;">
+        <!-- NgFor -->
+        <div class="card-body" *ngFor="let item of textGetMessages; let i = index">
+
+            <div class="row">
+                <div class="col-3">
+                    {{textGetMessages[i].author}}
+                </div>
+                <div class="col">
+                    <div class="row">
+                        {{textGetMessages[i].body}}
+                        {{textGetMessages[i].media}}
+                    </div>
+                    <div class="row text-date">
+                        {{textGetMessages[i].date_created}}
+                    </div>
+                </div>
+            </div>
+
+            <!-- NgFor -->
+        </div>
+    </div>
+</div>
+
+<div class="container mt-3" style="border: 0em;">
+    <div class="card" style="border: 0em;">
+        <form [formGroup]="textForm">
+            <input id="text" type="text" placeholder="Text Message" style="width: 900px; height: 40px;" [formControl]="text" formControlName="text">
+            <button type="button" class="btn btn-primary ml-2" (click)="sendChat()">Send</button>
+        </form>
+    </div>
+</div>
