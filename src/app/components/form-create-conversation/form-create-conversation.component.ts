@@ -29,7 +29,7 @@ export class FormCreateConversationComponent implements OnInit {
     apiURL: [this.envAPIKey.apiURL],
     apiUser: [this.envAPIKey.apiUser],
     apiKey: [this.envAPIKey.apiKey],
-    receipient: [''],
+    receipient: [this.envAPIKey.to],
     body: [''],
     conversationName: ['My Conversation'],
     textConversationSID: [''],
@@ -64,8 +64,8 @@ export class FormCreateConversationComponent implements OnInit {
 
     let newBody = new URLSearchParams({
       // E.164 format
-      'From' : '',
-      'To' :'',
+      'From' : this.envAPIKey.from,
+      'To' : this.envAPIKey.to,
       'Body': this.body
     })
 
@@ -107,7 +107,7 @@ export class FormCreateConversationComponent implements OnInit {
 
     let body = new URLSearchParams({
       'Identity': 'Twilio',
-      'MessagingBinding.ProjectedAddress' : ''    
+      'MessagingBinding.ProjectedAddress' : this.envAPIKey.from    
     })
 
     const conversationURL = this.envAPIKey.conversationAPIURL + this.formAPISetup.value.textConversationSID + '/Participants'
@@ -122,7 +122,7 @@ export class FormCreateConversationComponent implements OnInit {
 
     let body = new URLSearchParams({
       'Identity': this.formAPISetup.value.chatter,
-      'MessagingBinding.ProjectedAddress' : ''
+      'MessagingBinding.ProjectedAddress' : this.envAPIKey.from
     })
 
     const conversationURL = this.envAPIKey.conversationAPIURL + this.formAPISetup.value.textConversationSID + '/Participants'
